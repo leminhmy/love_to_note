@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:your_money/screens/detail_item_movie/cubit/detail_item_movie_cubit.dart';
 import 'package:your_money/widget/container_border_liner.dart';
 
+import '../../../uitls/size_config.dart';
 import '../../../uitls/theme_color.dart';
 import '../../../widget/text_header3.dart';
 
@@ -35,7 +38,6 @@ class _TabControllerWidgetState extends State<TabControllerWidget>
     return Column(
       children: [
         TabBar(
-
           controller: _tabController,
           labelColor: ThemeColor.colorBlack,
           indicatorColor: ThemeColor.colorOrangeBasic,
@@ -48,14 +50,14 @@ class _TabControllerWidgetState extends State<TabControllerWidget>
           labelPadding: const EdgeInsets.only(right: 5,bottom: 5),
           isScrollable: true,
           onTap: (index){
-
+            context.read<DetailItemMovieCubit>().changeTabWeekdays(index);
 
           },
           tabs:  List.generate(7, (index) => Tab(
-              height: 50,
+              height: SizeConfig.screenHeight * 0.05,
               iconMargin: EdgeInsets.zero,
               child: SizedBox(
-                width: 150,
+                width: SizeConfig.screenHeight * 0.15,
                 child: ContainerBorderLiner(
                   borderRadius: BorderRadius.circular(7),
                   gradient: ThemeColor.linerColorBlackWhile,
@@ -73,7 +75,7 @@ class _TabControllerWidgetState extends State<TabControllerWidget>
                             return Align(
                               alignment: const Alignment(1,0),
                               child: SizedBox(
-                                width: 150,
+                                width: SizeConfig.screenHeight * 0.15,
                                 child: ContainerBorderLiner(
                                   borderRadius: BorderRadius.circular(7),
                                   gradient: _tabController.index == index?ThemeColor.linerColorBlueLight:ThemeColor.linerColorBlackWhile,

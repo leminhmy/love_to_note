@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeColor{
+
   //colorDark
   static const Color colorBackgroundDark = Color(0xff1a1a20);
   static const Color colorLiner1 = Color(0xff23232a);
@@ -19,6 +20,7 @@ class ThemeColor{
   static const Color colorBlue = Color(0xff3a8eef);
   static const Color colorBlueLight = Color(0xff51aff8);
   static const Color colorBlueGreen = Color(0xff00dbef);
+  static const Color colorGreen = Color(0xff10ff00);
   static const Color colorViolet = Color(0xffb73bf3);
   static const Color colorOrange = Color(0xfff36f11);
   static const Color colorOrangeWhile = Color(0xfff1b582);

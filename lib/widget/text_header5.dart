@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:your_money/uitls/size_config.dart';
 
 class TextHeader5 extends StatelessWidget {
   const TextHeader5({Key? key, required this.text, this.colorText, this.fontSize, this.fontWeight}) : super(key: key);
@@ -12,7 +13,7 @@ class TextHeader5 extends StatelessWidget {
     return Text(text,style: TextStyle(
       height: 1.5,
         color: colorText??Colors.grey.shade400,
-        fontSize: fontSize??17,
+        fontSize: fontSize??SizeConfig.screenHeight * 0.017,
         fontWeight: fontWeight??FontWeight.w500
     ),);
   }

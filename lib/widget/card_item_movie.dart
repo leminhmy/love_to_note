@@ -1,16 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:your_money/models/item_movie.dart';
 import 'package:your_money/widget/text_header1.dart';
 import 'package:your_money/widget/text_header3.dart';
 
 import '../uitls/image_assets.dart';
+import '../uitls/size_config.dart';
 import '../uitls/theme_color.dart';
 import 'neumorphism_container.dart';
 
 
 class CardItemMovie extends StatefulWidget {
   const   CardItemMovie({
-    Key? key,
+    Key? key, required this.itemMovie, this.onPressDelete,
   }) : super(key: key);
+
+  final ItemMovie itemMovie;
+  final VoidCallback? onPressDelete;
 
   @override
   State<CardItemMovie> createState() => _CardItemMovieState();
@@ -44,12 +51,12 @@ class _CardItemMovieState extends State<CardItemMovie>  with SingleTickerProvide
             return const SizedBox();
           }else{
             return Container(
-              height: 315-(315*_animationController.value),
-              width: 210-(210*_animationController.value),
+              height: SizeConfig.screenHeight * 0.315-(SizeConfig.screenHeight * 0.315*_animationController.value),
+              width: SizeConfig.screenHeight * 0.210-(SizeConfig.screenHeight * 0.210*_animationController.value),
               margin: const EdgeInsets.all(5),
               decoration:  BoxDecoration(
-                image: const DecorationImage(
-                    image: AssetImage(ImageAssets.movieBg),
+                image:  DecorationImage(
+                    image: FileImage(File(widget.itemMovie.image)),
                     fit: BoxFit.cover
                 ),
                 borderRadius: BorderRadius.circular(15),
@@ -59,12 +66,12 @@ class _CardItemMovieState extends State<CardItemMovie>  with SingleTickerProvide
                 fit: StackFit.expand,
                 children: [
                   Container(
-                    height: 60,
-                    width: 210,
+                    height: SizeConfig.screenHeight * 0.06,
+                    width: SizeConfig.screenHeight * 0.210,
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.bottomLeft,
                     decoration:  BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(SizeConfig.screenHeight * 0.015),
                         gradient: const LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -75,7 +82,7 @@ class _CardItemMovieState extends State<CardItemMovie>  with SingleTickerProvide
                             ]
                         )
                     ),
-                    child: const TextHeader1(text: "Lực Bạt Sơn Hà",colorText: ThemeColor.colorWhile,),
+                    child: TextHeader1(text: widget.itemMovie.name,colorText: ThemeColor.colorWhile,),
                   ),
                   StatefulBuilder(
                       builder: (context, setStateShowBtn) {
@@ -97,9 +104,11 @@ class _CardItemMovieState extends State<CardItemMovie>  with SingleTickerProvide
 
                           ),
                           child: SizedBox(
-                            width: 100,
-                            height: 50,
+                            width: SizeConfig.screenHeight * 0.1,
+                            height: SizeConfig.screenHeight * 0.05,
                             child: selected?TextBtnAnimation(onPressAccept: (){
+                              widget.onPressDelete!();
+                              print("call fn ");
                               _animationController.forward();
                             }):const SizedBox(),
                           ),

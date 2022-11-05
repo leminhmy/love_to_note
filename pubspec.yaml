@@ -40,6 +40,13 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   connectivity_plus: ^2.3.6
+  lottie:
+  path_provider:
+  page_transition: ^2.0.5
+  image_picker:
+  another_flushbar: ^1.12.29
+  flutter_colorpicker: ^1.0.3
+  flutter_secure_storage: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +74,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/gif/
+    - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:your_money/uitls/theme_color.dart';
 
+import '../uitls/size_config.dart';
+
 class TextHeader1 extends StatelessWidget {
   const TextHeader1({Key? key, required this.text, this.colorText, this.fontSize, this.fontWeight}) : super(key: key);
 
@@ -12,8 +14,8 @@ class TextHeader1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,style: TextStyle(
       color: colorText??ThemeColor.colorBlack,
-      fontSize: fontSize??24,
+      fontSize: fontSize??SizeConfig.screenHeight * 0.024,
       fontWeight: fontWeight??FontWeight.bold
-    ),maxLines: 1,);
+    ),maxLines: 1,overflow: TextOverflow.ellipsis,);
   }
 }

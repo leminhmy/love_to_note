@@ -13,4 +13,14 @@ class IconsAssets{
   static const String dinner  = "assets/icons/dinner.png";
   static const String menuBar  = "assets/icons/menu-bar.png";
   static const String film  = "assets/icons/film.png";
+  static const String change  = "assets/icons/change.png";
+  static const String add  = "assets/icons/add.png";
+  static const String check  = "assets/icons/check-mark.png";
+  static const String balanced  = "assets/icons/balanced-diet.png";
+  static const String delivery  = "assets/icons/delivery-man.png";
+  static const String diet  = "assets/icons/diet.png";
+
+  static List<String> listIcon = [
+    burger,shopping,pet,film,moneyBag,control,smartPhone,application,
+  ];
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../uitls/size_config.dart';
 import '../uitls/theme_color.dart';
 
 class IconBgBtn extends StatelessWidget {
@@ -12,8 +13,8 @@ class IconBgBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
-      width: 40,
+      height: SizeConfig.screenHeight * 0.04,
+      width: SizeConfig.screenHeight * 0.064,
       child: Stack(
         alignment: Alignment.center,
         children:  [

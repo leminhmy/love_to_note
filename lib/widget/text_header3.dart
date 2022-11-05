@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:your_money/uitls/theme_color.dart';
 
+import '../uitls/size_config.dart';
+
 class TextHeader3 extends StatelessWidget {
   const TextHeader3({Key? key, required this.text, this.colorText, this.fontSize, this.fontWeight}) : super(key: key);
 
@@ -12,7 +14,7 @@ class TextHeader3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,style: TextStyle(
         color: colorText??ThemeColor.colorGrey,
-        fontSize: fontSize??20,
+        fontSize: fontSize??SizeConfig.screenHeight * 0.02,
         fontWeight: fontWeight??FontWeight.w600
     ),textAlign: TextAlign.center,);
   }

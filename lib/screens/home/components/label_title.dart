@@ -1,6 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:your_money/models/item_food.dart';
+import 'package:your_money/models/item_menu.dart';
+import 'package:your_money/repository/repository_menu.dart';
+import 'package:your_money/screens/home/home.dart';
 import 'package:your_money/uitls/icons_assets.dart';
 
+import '../../../data/storage/storage.dart';
+import '../../../models/expenses.dart';
+import '../../../uitls/size_config.dart';
 import '../../../uitls/theme_color.dart';
 import '../../../widget/icon_border_btn.dart';
 import '../../../widget/icon_circle_btn.dart';
@@ -20,7 +30,7 @@ class _LabelTitleState extends State<LabelTitle> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(SizeConfig.screenHeight * 0.02),
       child: Row(
         children: [
            IconBorderBtn(
@@ -40,8 +50,12 @@ class _LabelTitleState extends State<LabelTitle> {
             ],
           ),
           const Spacer(),
-          const IconCircleBtn(
-              icon: Icon(
+           IconCircleBtn(
+            onPress: () async{
+                Expenses ex = await StorageSecure.getAllData();
+                print(ex.toJson());
+            },
+              icon: const Icon(
                 Icons.shopping_cart_rounded,
                 color: Colors.white,
               )),

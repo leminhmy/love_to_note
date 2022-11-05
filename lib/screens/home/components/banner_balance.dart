@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:your_money/screens/home/home.dart';
 import 'package:your_money/uitls/app_format.dart';
+import 'package:your_money/uitls/size_config.dart';
 
 import '../../../uitls/theme_color.dart';
 import '../../../widget/text_header1.dart';
 import '../../../widget/text_header3.dart';
 import '../../../widget/text_header5.dart';
-import '../../transactions/transactions_page.dart';
+import '../../transactions/view/transactions_page.dart';
 
 class BannerBanlance extends StatelessWidget {
   const BannerBanlance({
@@ -15,125 +18,143 @@ class BannerBanlance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      padding: const EdgeInsets.all(20),
-      height: 250,
+      margin: EdgeInsets.symmetric(horizontal: SizeConfig.screenHeight * 0.02),
+      padding: EdgeInsets.all(SizeConfig.screenHeight * 0.02),
+      height: SizeConfig.screenHeight * 0.25,
       width: double.maxFinite,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(35),
+        borderRadius: BorderRadius.circular(SizeConfig.screenHeight * 0.035),
         gradient: ThemeColor.linerColor,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const TextHeader3(
-            text: "Total Balance",
-            colorText: ThemeColor.colorGreyWhile,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          TweenAnimationBuilder(
-              tween: Tween<double>(begin: 0, end: 1),
-              duration: const Duration(milliseconds: 500),
-              builder: (context, double value, child) {
-                double number = 4800000 * value;
-                return TextHeader1(
-                  text: AppFormat.numberFormatPriceVi(number),
-                  fontSize: 50,
-                  colorText: ThemeColor.colorWhile,
-                );
-              }),
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          double balance = state.expenses!.incomeMoney - state.expenses!.expensesMoney;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const TextHeader3(
+                text: "Total Balance",
+                colorText: ThemeColor.colorGreyWhile,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: TweenAnimationBuilder(
+                    tween: Tween<double>(begin: 0, end: 1),
+                    duration: const Duration(milliseconds: 500),
+                    builder: (context, double value, child) {
+                      double number = balance * value;
+                      return TextHeader1(
+                        text: AppFormat.numberFormatPriceVi(number),
+                        fontSize: SizeConfig.screenHeight * 0.05,
+                        colorText: ThemeColor.colorWhile,
+                      );
+                    }),
+              ),
 
-          SizedBox(
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              SizedBox(
+                height: SizeConfig.screenHeight * 0.1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ThemeColor.colorGreyWhile.withOpacity(0.7),
-                      ),
-                      child: const Icon(
-                        Icons.arrow_downward_outlined,
-                        color: Colors.green,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const TextHeader5(
-                          text: "Income",
+                    Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: ThemeColor.colorGreyWhile.withOpacity(0.7),
+                              ),
+                              child: const Icon(
+                                Icons.arrow_downward_outlined,
+                                color: Colors.green,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const TextHeader5(
+                                  text: "Income",
+                                ),
+                                TweenAnimationBuilder(
+                                    tween: Tween<double>(begin: 0, end: 1),
+                                    duration: const Duration(milliseconds: 500),
+                                    builder: (context, double value, child) {
+                                      double number = state.expenses?.incomeMoney??0 * value;
+                                      return TextHeader3(
+                                        text: AppFormat.numberFormatPriceVi(number),
+                                        colorText: ThemeColor.colorGreyWhile,
+                                      );
+                                    }),
+                              ],
+                            )
+                          ],
                         ),
-                        TweenAnimationBuilder(
-                            tween: Tween<double>(begin: 0, end: 1),
-                            duration: const Duration(milliseconds: 500),
-                            builder: (context, double value, child) {
-                              double number = 2500000 * value;
-                              return TextHeader3(
-                                text: AppFormat.numberFormatPriceVi(number),
-                                colorText: ThemeColor.colorGreyWhile,
-                              );
-                            }),
-                      ],
-                    )
+                      ),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: ThemeColor.colorGreyWhile.withOpacity(0.7),
+                              ),
+                              child: const Icon(
+                                Icons.arrow_upward_outlined,
+                                color: Colors.red,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const TextHeader5(
+                                  text: "Expenses",
+                                ),
+                                TweenAnimationBuilder(
+                                    tween: Tween<double>(begin: 0, end: 1),
+                                    duration: const Duration(milliseconds: 500),
+                                    builder: (context, double value, child) {
+                                      double number = state.expenses?.expensesMoney??0 * value;
+                                      return TextHeader3(
+                                        text: AppFormat.numberFormatPriceVi(number),
+                                        colorText: ThemeColor.colorGreyWhile,
+                                      );
+                                    }),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ThemeColor.colorGreyWhile.withOpacity(0.7),
-                      ),
-                      child: const Icon(
-                        Icons.arrow_upward_outlined,
-                        color: Colors.red,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  [
-                        const TextHeader5(
-                          text: "Expenses",
-                        ),
-                        TweenAnimationBuilder(
-                            tween: Tween<double>(begin: 0, end: 1),
-                            duration: const Duration(milliseconds: 500),
-                            builder: (context, double value, child) {
-                              double number = 800000 * value;
-                              return TextHeader3(
-                                text: AppFormat.numberFormatPriceVi(number),
-                                colorText: ThemeColor.colorGreyWhile,
-                              );
-                            }),
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
+              )
+            ],
+          );
+        },
       ),
     );
   }
