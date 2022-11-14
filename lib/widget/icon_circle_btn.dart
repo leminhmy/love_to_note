@@ -18,9 +18,9 @@ class IconCircleBtn extends StatelessWidget {
       decoration: BoxDecoration(
          color: Colors.white,
         shape: BoxShape.circle,
-        boxShadow: const [
+        boxShadow:  [
           BoxShadow(
-            color: ThemeColor.colorGreyWhile,
+            color: ThemeColorDarkLight.color.shadow,
             blurRadius: 3,
             spreadRadius: 3
           )

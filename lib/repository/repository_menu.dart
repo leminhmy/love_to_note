@@ -26,15 +26,15 @@ class RepositoryMenu{
   static  List<NoteMovie> _listNoteMovie = [];
   static List<NoteMovie> get listNoteMovie => _listNoteMovie;
 
-  loadData()async{
-    _expenses = await StorageSecure.getAllData();
+  loadData(Expenses expenses){
+    _expenses = expenses;
 
     _listItemMenu = List.from(_expenses.listItemMenu);
     _listItemExpenses = List.from(_expenses.listItemExpenses);
     _listNoteMovie = List.from(_expenses.listNoteMovie);
     _listItemIncome = List.from(_expenses.listItemIncome);
   }
-  Expenses getDataToStorage(){
+  Future<Expenses> getDataToStorage() async{
     _expenses.listItemExpenses = _listItemExpenses;
     _expenses.listItemMenu = _listItemMenu;
     _expenses.listItemIncome = _listItemIncome;
@@ -100,6 +100,14 @@ class RepositoryMenu{
   deleteItemIncome(ItemFood itemIncome){
     _expenses.incomeMoney-=itemIncome.price;
     _listItemIncome.remove(itemIncome);
+  }
+
+  deleteItemExpenses(int index){
+    _listItemExpenses.removeAt(index);
+  }
+
+  deleteItemNoteMovie(int index){
+    _listNoteMovie.removeAt(index);
   }
 
 }

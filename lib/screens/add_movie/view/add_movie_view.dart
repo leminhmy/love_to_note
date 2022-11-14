@@ -9,6 +9,8 @@ import 'package:your_money/uitls/theme_color.dart';
 import 'package:your_money/widget/show_snack.dart';
 import 'package:your_money/widget/text_header3.dart';
 
+import '../../../app/locate/lang_code.dart';
+
 class AddMovieView extends StatelessWidget {
   const AddMovieView({Key? key}) : super(key: key);
 
@@ -23,7 +25,7 @@ class AddMovieView extends StatelessWidget {
           }
           if(state.showDialog == AddMovieStateShowDialog.success){
 
-            ShowSnackCustom.showFlushBar(context: context,isError: false,text: "Add Success");
+            ShowSnackCustom.showFlushBar(context: context,isError: false,text: AppLang.lang(LangCode.addSuccess));
 
           }
         },

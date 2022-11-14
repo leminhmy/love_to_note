@@ -13,6 +13,7 @@ import 'package:your_money/widget/text_header1.dart';
 import 'package:your_money/widget/text_header3.dart';
 import 'package:your_money/widget/textfield_border.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../app/router/route_name.dart';
 import '../../../models/item_food.dart';
 import '../../../widget/card_item_food.dart';
@@ -25,7 +26,7 @@ class DetailItemFoodPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeColor.colorBackgroundWhile,
+      backgroundColor: ThemeColorDarkLight.color.backgroundScaffold,
       body: SafeArea(
         child: Stack(
           alignment: Alignment.center,
@@ -45,13 +46,13 @@ class DetailItemFoodPage extends StatelessWidget {
                               context, RouteName.initial,
                               arguments: "");
                         },
-                        icon: const Icon(
+                        icon:  Icon(
                           Icons.arrow_back_ios_new_outlined,
-                          color: ThemeColor.colorGrey,
+                          color: ThemeColorDarkLight.color.icon,
                         ),
                       ),
                       TextHeader1(
-                        text: "Food List",
+                        text: AppLang.lang(LangCode.expensesList),
                         fontSize: SizeConfig.screenHeight * 0.03,
                       ),
                       SizedBox(
@@ -69,11 +70,14 @@ class DetailItemFoodPage extends StatelessWidget {
                 const TabControllerWidget(),
                 SizedBox(
                   height: SizeConfig.screenHeight * 0.06,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                  child:  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextFieldBorder(
-                      icon: Icon(Icons.search),
-                      textHint: "Search Food...",
+                      icon: Icon(Icons.search,color: ThemeColorDarkLight.color.icon,),
+                      textHint: "${AppLang.lang(LangCode.search)}...",
+                      onChanged: (String text){
+                        context.read<DetailItemFoodCubit>().search(text);
+                      },
                     ),
                   ),
                 ),
@@ -85,9 +89,9 @@ class DetailItemFoodPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const TextHeader3(text: "All Item"),
+                      TextHeader3(text: "All ${AppLang.lang(LangCode.items)}"),
                       DropDownBtn(
-                        listItemDrop: const ["Date", "Ascending", "Descending"],
+                        listItemDrop: [AppLang.lang(LangCode.date), AppLang.lang(LangCode.ascending), AppLang.lang(LangCode.descending)],
                         indexSelected: (int index) {
                         context.read<DetailItemFoodCubit>().sortItem(index);
                         },

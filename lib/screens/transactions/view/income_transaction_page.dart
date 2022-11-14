@@ -8,6 +8,7 @@ import 'package:your_money/widget/card_item_food.dart';
 import 'package:your_money/widget/show_bottom_sheet.dart';
 import 'package:your_money/widget/show_dialog.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../uitls/icons_assets.dart';
 import '../../../uitls/size_config.dart';
 import '../../../uitls/theme_color.dart';
@@ -30,7 +31,7 @@ class IncomeTransactionPage extends StatelessWidget {
         }
         if (state.showDialog == AddIncomeTransactionDialog.success) {
           ShowSnackCustom.showFlushBar(
-              context: context, isError: false, text: "Add Success");
+              context: context, isError: false, text: AppLang.lang(LangCode.addSuccess));
         }
       },
       child: Stack(
@@ -42,12 +43,11 @@ class IncomeTransactionPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const TextHeader3(text: "All Income"),
+                     TextHeader3(text: AppLang.lang(LangCode.allIncome)),
                     DropDownBtn(
-                      listItemDrop: const ["Date", "Ascending", "Descending"],
+                      listItemDrop: [AppLang.lang(LangCode.date), AppLang.lang(LangCode.ascending), AppLang.lang(LangCode.descending)],
                       indexSelected: (int index) {
                         context.read<IncomeTransactionCubit>().sortList(index);
-                        print("index Drop btn $index");
                       },
                     ),
                   ],
@@ -71,7 +71,7 @@ class IncomeTransactionPage extends StatelessWidget {
                         child: const SizedBox(),
                         builder: (context, double value, child) {
                           return TextHeader1(
-                            text: AppFormat.numberFormatPriceVi(state.totalPrice * value),
+                            text: AppLang.formatPrice(state.totalPrice * value),
                           );
                         }
 

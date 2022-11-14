@@ -14,11 +14,11 @@ import 'text_header5.dart';
 class CardNoteDrawer extends StatefulWidget {
   const CardNoteDrawer({
     Key? key,
-    this.dateTime, this.onPress, required this.itemMenu, this.category,
+    this.dateTime, this.onPressAcceptDelete, required this.itemMenu, this.category,
   }) : super(key: key);
 
   final Widget? dateTime;
-  final VoidCallback? onPress;
+  final VoidCallback? onPressAcceptDelete;
   final ItemMenuModel? itemMenu;
   final String? category;
 
@@ -87,7 +87,7 @@ class _CardTransactionsState extends State<CardNoteDrawer>
                             width: SizeConfig.screenHeight * 0.35,
                             padding: EdgeInsets.all(SizeConfig.screenHeight * 0.01),
                             decoration:  BoxDecoration(
-                              color: ThemeColor.colorWhile,
+                              color: ThemeColorDarkLight.color.backgroundItem,
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(SizeConfig.screenHeight * 0.015),
                                 topLeft: Radius.circular(SizeConfig.screenHeight * 0.015),
@@ -99,7 +99,7 @@ class _CardTransactionsState extends State<CardNoteDrawer>
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                    IconCircleBtn(
-                                    size: SizeConfig.screenHeight * 0.05,
+                                    size: SizeConfig.screenHeight * 0.045,
                                       color: ThemeColor.colorOrangeBasic,
                                       icon:  Padding(
                                         padding: const EdgeInsets.all(5),
@@ -114,7 +114,6 @@ class _CardTransactionsState extends State<CardNoteDrawer>
                                    TextHeader1(
                                     text: widget.itemMenu?.name??"null name",
                                     fontSize: SizeConfig.screenHeight * 0.02,
-                                    colorText: ThemeColor.colorBlack2,
                                   ),
                                   const Spacer(),
                                   TextHeader5(
@@ -133,26 +132,12 @@ class _CardTransactionsState extends State<CardNoteDrawer>
                             },
                             child:  SizedBox(
                               width: SizeConfig.screenHeight * 0.08,
-                              child: Stack(
-                                children: [
-                                   ContainerBorderLiner(
-                                    borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(SizeConfig.screenHeight * 0.015),
-                                      topRight: Radius.circular(SizeConfig.screenHeight * 0.015),
-                                    ),
-                                    child: const TextHeader3(text: "Delete",colorText: ThemeColor.colorWhile,),
-                                  ),
-                                  Container(
-                                    width: SizeConfig.screenHeight * 0.01,
-                                    decoration:  BoxDecoration(
-                                      color: ThemeColor.colorWhile,
-                                      borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(SizeConfig.screenHeight * 0.015),
-                                        topRight: Radius.circular(SizeConfig.screenHeight * 0.015),
-                                      ),
-                                    ),
-                                  )
-                                ],
+                              child: ContainerBorderLiner(
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(SizeConfig.screenHeight * 0.015),
+                                  topRight: Radius.circular(SizeConfig.screenHeight * 0.015),
+                                ),
+                                child: const TextHeader3(text: "Delete",colorText: ThemeColor.colorWhile,),
                               ),
                             ),
                           ),
@@ -162,7 +147,7 @@ class _CardTransactionsState extends State<CardNoteDrawer>
                         height: SizeConfig.screenHeight * 0.09,
                           width: SizeConfig.screenHeight * 0.22,
                           child: ShowWidgetAccept(onPressAccept: (){
-                            widget.onPress;
+                            widget.onPressAcceptDelete!();
                             animationDelete();
                           }, onPressCancel: (){
                             showWidgetDialog = false;

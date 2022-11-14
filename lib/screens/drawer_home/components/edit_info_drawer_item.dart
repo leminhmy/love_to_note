@@ -32,7 +32,6 @@ class EditInfoItemDrawer extends StatelessWidget {
           padding: EdgeInsets.all(10),
           child: TextHeader1(
             text: "Selected Icons",
-            colorText: ThemeColor.colorGrey,
           ),
         ),
         Expanded(
@@ -40,7 +39,7 @@ class EditInfoItemDrawer extends StatelessWidget {
             width: double.maxFinite,
             padding: const EdgeInsets.only(left: 15, top: 15),
             decoration: BoxDecoration(
-              color: ThemeColor.colorBackgroundWhile,
+              color: ThemeColorDarkLight.color.backgroundScaffold,
               borderRadius: BorderRadius.circular(10),
             ),
             child: SelectedImageOrIconView(urlImageOrIcon: (String url) {

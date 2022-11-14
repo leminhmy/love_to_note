@@ -4,14 +4,15 @@ import 'package:your_money/screens/home/home.dart';
 import 'package:your_money/uitls/app_format.dart';
 import 'package:your_money/uitls/size_config.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../uitls/theme_color.dart';
 import '../../../widget/text_header1.dart';
 import '../../../widget/text_header3.dart';
 import '../../../widget/text_header5.dart';
 import '../../transactions/view/transactions_page.dart';
 
-class BannerBanlance extends StatelessWidget {
-  const BannerBanlance({
+class BannerBalance extends StatelessWidget {
+  const BannerBalance({
     Key? key,
   }) : super(key: key);
 
@@ -34,8 +35,8 @@ class BannerBanlance extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const TextHeader3(
-                text: "Total Balance",
+               TextHeader3(
+                text: AppLang.lang(LangCode.theRemainingBalance),
                 colorText: ThemeColor.colorGreyWhile,
               ),
               const SizedBox(
@@ -49,7 +50,7 @@ class BannerBanlance extends StatelessWidget {
                     builder: (context, double value, child) {
                       double number = balance * value;
                       return TextHeader1(
-                        text: AppFormat.numberFormatPriceVi(number),
+                        text: AppLang.formatPrice(number),
                         fontSize: SizeConfig.screenHeight * 0.05,
                         colorText: ThemeColor.colorWhile,
                       );
@@ -86,8 +87,9 @@ class BannerBanlance extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const TextHeader5(
-                                  text: "Income",
+                                 TextHeader5(
+                                  text: AppLang.lang(LangCode.income),
+                                  colorText: ThemeColor.colorWhile,
                                 ),
                                 TweenAnimationBuilder(
                                     tween: Tween<double>(begin: 0, end: 1),
@@ -95,7 +97,7 @@ class BannerBanlance extends StatelessWidget {
                                     builder: (context, double value, child) {
                                       double number = state.expenses?.incomeMoney??0 * value;
                                       return TextHeader3(
-                                        text: AppFormat.numberFormatPriceVi(number),
+                                        text: AppLang.formatPrice(number),
                                         colorText: ThemeColor.colorGreyWhile,
                                       );
                                     }),
@@ -130,8 +132,9 @@ class BannerBanlance extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const TextHeader5(
-                                  text: "Expenses",
+                                 TextHeader5(
+                                  text: AppLang.lang(LangCode.expenses),
+                                   colorText: ThemeColor.colorWhile,
                                 ),
                                 TweenAnimationBuilder(
                                     tween: Tween<double>(begin: 0, end: 1),
@@ -139,7 +142,7 @@ class BannerBanlance extends StatelessWidget {
                                     builder: (context, double value, child) {
                                       double number = state.expenses?.expensesMoney??0 * value;
                                       return TextHeader3(
-                                        text: AppFormat.numberFormatPriceVi(number),
+                                        text: AppLang.formatPrice(number),
                                         colorText: ThemeColor.colorGreyWhile,
                                       );
                                     }),

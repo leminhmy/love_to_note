@@ -15,7 +15,7 @@ class CountdownTimer extends StatefulWidget {
 }
 
 class _CountdownTimerState extends State<CountdownTimer> {
-  late final Timer _timer;
+  late Timer _timer;
   final oneSec = const Duration(seconds: 1);
   int _start = 10;
 

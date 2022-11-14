@@ -20,17 +20,17 @@ class NeumorphismContainer extends StatelessWidget {
       width: double.maxFinite,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: colorBackground??ThemeColor.colorBackgroundWhile,
+            color: colorBackground??ThemeColorDarkLight.color.backgroundScaffold,
             borderRadius: BorderRadius.circular(borderSize??8),
             boxShadow:  [
               BoxShadow(
                   blurRadius: 2,
-                  color: colorShadow2??ThemeColor.colorShadow1,
+                  color: colorShadow2??ThemeColorDarkLight.color.shadow,
                   offset: offset??const Offset(4, 4),
                   inset: inset??true),
               BoxShadow(
                   blurRadius: 2,
-                  color: colorShadow1??ThemeColor.colorShadow2,
+                  color: colorShadow1??ThemeColorDarkLight.color.shadow2,
                   offset: -(offset?? const Offset(4, 4)),
                   inset: inset??true),
 

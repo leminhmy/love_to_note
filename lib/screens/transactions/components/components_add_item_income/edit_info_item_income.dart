@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:your_money/app/locate/lang_code.dart';
 import 'package:your_money/screens/selected_image_or_icon/view/selected_image_or_icon_view.dart';
 import 'package:your_money/screens/transactions/view/add_item_income_transaction.dart';
 import 'package:your_money/screens/transactions/cubit/income_transaction__cubit.dart';
+import 'package:your_money/uitls/app_format.dart';
 import 'package:your_money/widget/neumorphism_container.dart';
 import 'package:your_money/widget/text_header1.dart';
 
@@ -13,14 +15,14 @@ import '../../../../widget/text_header3.dart';
 import '../../../add_item_food/cubit/add_item_food_cubit.dart';
 
 
-class EditInfoItemFood extends StatefulWidget {
-  const EditInfoItemFood({Key? key}) : super(key: key);
+class EditInfoItemIncome extends StatefulWidget {
+  const EditInfoItemIncome({Key? key}) : super(key: key);
 
   @override
-  State<EditInfoItemFood> createState() => _EditInfoItemFoodState();
+  State<EditInfoItemIncome> createState() => _EditInfoItemIncomeState();
 }
 
-class _EditInfoItemFoodState extends State<EditInfoItemFood> {
+class _EditInfoItemIncomeState extends State<EditInfoItemIncome> {
   int quantity = 1;
   double price = 0;
   int indexPrevious = -1;
@@ -35,6 +37,7 @@ class _EditInfoItemFoodState extends State<EditInfoItemFood> {
         SizedBox(
           height: SizeConfig.screenHeight * 0.05,
           child: LabelTextField(
+
             valueUnFocus: (String? text) {
               context.read<IncomeTransactionCubit>().editName(text ?? "");
             },
@@ -47,13 +50,12 @@ class _EditInfoItemFoodState extends State<EditInfoItemFood> {
           height: SizeConfig.screenHeight * 0.05,
           child: LabelTextField(
             textInputType: TextInputType.number,
-            hintTextField: "Price...",
+            hintTextField: "Enter ${AppLang.lang(LangCode.price)}...",
             textEditingController: _textEditingControllerPrice,
-            label: "Price",
+            label: AppLang.lang(LangCode.price),
             valueUnFocus: (String? text) {
-              print(" text price $text");
               if (text != null && text != "") {
-                price = double.parse(text.replaceAll(RegExp('[^0-9]'), ""));
+                price = AppLang.formatPriceTextField(text.replaceAll(',', '.'));
               }
               context.read<IncomeTransactionCubit>().editPrice(price);
             },
@@ -66,8 +68,8 @@ class _EditInfoItemFoodState extends State<EditInfoItemFood> {
           children: [
             SizedBox(
                 width: SizeConfig.screenHeight * 0.1,
-                child: const TextHeader3(
-                  text: "Quantity",
+                child: TextHeader3(
+                  text: AppLang.lang(LangCode.quantity),
                 )),
             const SizedBox(
               width: 10,
@@ -130,11 +132,11 @@ class _EditInfoItemFoodState extends State<EditInfoItemFood> {
             }))
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.all(10),
+         Padding(
+          padding: const EdgeInsets.all(10),
           child: TextHeader1(
-            text: "Selected Icons",
-            colorText: ThemeColor.colorGrey,
+            text: "${AppLang.lang(LangCode.choose)} Icons",
+            colorText: ThemeColorDarkLight.color.text2,
           ),
         ),
         Expanded(
@@ -142,7 +144,7 @@ class _EditInfoItemFoodState extends State<EditInfoItemFood> {
             width: double.maxFinite,
             padding: const EdgeInsets.only(left: 15, top: 15),
             decoration: BoxDecoration(
-              color: ThemeColor.colorBackgroundWhile,
+              color: ThemeColorDarkLight.color.backgroundScaffold,
               borderRadius: BorderRadius.circular(10),
             ),
             child: SelectedImageOrIconView(

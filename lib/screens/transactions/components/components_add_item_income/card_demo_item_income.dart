@@ -9,14 +9,15 @@ import 'package:your_money/uitls/size_config.dart';
 import 'package:your_money/widget/icon_circle_btn.dart';
 import 'package:your_money/widget/show_dialog.dart';
 
+import '../../../../app/locate/lang_code.dart';
 import '../../../../uitls/app_format.dart';
 import '../../../../uitls/theme_color.dart';
 import '../../../../widget/text_header1.dart';
 import '../../../../widget/text_header3.dart';
 
 
-class CardDemoItemFood extends StatelessWidget {
-  const CardDemoItemFood({Key? key}) : super(key: key);
+class CardDemoItemIncome extends StatelessWidget {
+  const CardDemoItemIncome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class CardDemoItemFood extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: ThemeColor.colorWhile,
+        color: ThemeColorDarkLight.color.backgroundItem,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
@@ -98,8 +99,7 @@ class CardDemoItemFood extends StatelessWidget {
                 current.reload == AddIncomeTransactionReload.price,
                 builder: (context, state) {
                   return TextHeader3(
-                    text: AppFormat.numberFormatPriceVi(state.itemFood
-                        .price),
+                    text: AppLang.formatPrice(state.itemFood.price),
                   );
                 },
               ),
@@ -108,7 +108,7 @@ class CardDemoItemFood extends StatelessWidget {
                 current.reload == AddIncomeTransactionReload.quantity,
                 builder: (context, state) {
                   return TextHeader3(
-                    text: "Quantity: ${state.itemFood.quantity}",
+                    text: "${AppLang.lang(LangCode.quantity)}: ${state.itemFood.quantity}",
                   );
                 },
               ),

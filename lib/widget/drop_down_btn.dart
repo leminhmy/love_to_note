@@ -28,13 +28,14 @@ class _DropDownBtnState extends State<DropDownBtn> {
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(5)),
+          color: ThemeColorDarkLight.color.backgroundItem, borderRadius: BorderRadius.circular(5)),
 
       child: DropdownButton<String>(
         value: dropdownValue,
         icon: const Icon(Icons.keyboard_arrow_down_rounded),
         elevation: 13,
         isDense: true,
+        dropdownColor: ThemeColorDarkLight.color.backgroundItem,
         style: const TextStyle(color: Colors.grey,fontSize: 16),
         underline: const SizedBox(),
 

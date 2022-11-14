@@ -7,6 +7,7 @@ import 'package:your_money/uitls/icons_assets.dart';
 
 import 'package:your_money/widget/icon_circle_btn.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../uitls/size_config.dart';
 import '../../../uitls/theme_color.dart';
 import '../../../widget/container_border_liner.dart';
@@ -26,9 +27,9 @@ class AddItemFoodPage extends StatelessWidget {
     return Container(
       height: double.maxFinite,
       padding: const EdgeInsets.symmetric(vertical: 20),
-      decoration: const BoxDecoration(
-          color: ThemeColor.colorBackgroundWhile,
-          borderRadius: BorderRadius.only(
+      decoration:  BoxDecoration(
+          color: ThemeColorDarkLight.color.backgroundScaffold,
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(25),
             topRight: Radius.circular(25),
           )),
@@ -39,11 +40,11 @@ class AddItemFoodPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  [
-              const IconBorderBtn(
-                icon: Icon(Icons.add,size: 35,color: ThemeColor.colorBlack2,),
+               IconBorderBtn(
+                icon: Icon(Icons.add,size: SizeConfig.screenHeight * 0.035,color: ThemeColorDarkLight.color.icon,),
               ),
               const SizedBox(width: 10,),
-              TextHeader1(text: "ItemFood - $nameCategory",),
+              TextHeader1(text: "${AppLang.lang(LangCode.expenses)} - $nameCategory",),
             ],
           ),
           const SizedBox(height: 10,),
@@ -54,7 +55,7 @@ class AddItemFoodPage extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                  color: ThemeColor.colorWhile,
+                  color: ThemeColorDarkLight.color.backgroundItem,
                   borderRadius: BorderRadius.circular(20)
               ),
               child: const EditInfoItemFood(),

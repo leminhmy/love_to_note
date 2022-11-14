@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../uitls/size_config.dart';
 import '../../../uitls/theme_color.dart';
 import '../../../widget/container_border_liner.dart';
@@ -50,7 +51,7 @@ class _SwitchButtonState extends State<SwitchButton>
       width: double.maxFinite,
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: ThemeColor.colorWhile,
+        color: ThemeColorDarkLight.color.backgroundItem,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
@@ -89,7 +90,7 @@ class _SwitchButtonState extends State<SwitchButton>
                       },
                       child: Center(
                           child: TextHeader3(
-                            text: "Income",
+                            text: AppLang.lang(LangCode.income),
                             colorText: selected?ThemeColor.colorGrey:ThemeColor.colorWhile,
                           )),
                     ),),
@@ -107,7 +108,7 @@ class _SwitchButtonState extends State<SwitchButton>
                       },
                       child:  Center(
                           child: TextHeader3(
-                            text: "Expenses",
+                            text: AppLang.lang(LangCode.expenses),
                             colorText: selected?ThemeColor.colorWhile:ThemeColor.colorGrey,
                           )),
                     )),

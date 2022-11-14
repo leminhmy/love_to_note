@@ -63,10 +63,10 @@ class _CardItemMovieState extends State<CardItemMovie>  with SingleTickerProvide
 
               ),
               child: Stack(
-                fit: StackFit.expand,
+                alignment: Alignment.bottomCenter,
                 children: [
                   Container(
-                    height: SizeConfig.screenHeight * 0.06,
+                    height: SizeConfig.screenHeight * 0.1,
                     width: SizeConfig.screenHeight * 0.210,
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.bottomLeft,
@@ -77,43 +77,49 @@ class _CardItemMovieState extends State<CardItemMovie>  with SingleTickerProvide
                             end: Alignment.bottomCenter,
                             colors: [
                               Colors.transparent,
-                              Colors.black87,
+                              Colors.black,
 
                             ]
                         )
                     ),
-                    child: TextHeader1(text: widget.itemMovie.name,colorText: ThemeColor.colorWhile,),
+                    child: TextHeader1(text: widget.itemMovie.name,colorText: ThemeColor.colorWhile,maxLine: 2),
                   ),
-                  StatefulBuilder(
-                      builder: (context, setStateShowBtn) {
-                        return ElevatedButton(
-                          onPressed: (){
-                            if(selected == true){
-                              selected = false;
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                    top: 0,
+                    child: StatefulBuilder(
+                        builder: (context, setStateShowBtn) {
+                          return ElevatedButton(
+                            onPressed: (){
+                              if(selected == true){
+                                selected = false;
+                                setStateShowBtn((){});
+                              }
+                            },
+                            onLongPress: (){
+                              selected = !selected;
                               setStateShowBtn((){});
-                            }
-                          },
-                          onLongPress: (){
-                            selected = !selected;
-                            setStateShowBtn((){});
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            primary: Colors.transparent,
-                            shadowColor: Colors.transparent,
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent,
 
-                          ),
-                          child: SizedBox(
-                            width: SizeConfig.screenHeight * 0.1,
-                            height: SizeConfig.screenHeight * 0.05,
-                            child: selected?TextBtnAnimation(onPressAccept: (){
-                              widget.onPressDelete!();
-                              print("call fn ");
-                              _animationController.forward();
-                            }):const SizedBox(),
-                          ),
-                        );
-                      }
+                            ),
+                            child: SizedBox(
+                              width: SizeConfig.screenHeight * 0.1,
+                              height: SizeConfig.screenHeight * 0.05,
+                              child: selected?TextBtnAnimation(onPressAccept: (){
+                                widget.onPressDelete!();
+                                print("call fn ");
+                                _animationController.forward();
+                              }):const SizedBox(),
+                            ),
+                          );
+                        }
+                    ),
                   ),
 
                 ],

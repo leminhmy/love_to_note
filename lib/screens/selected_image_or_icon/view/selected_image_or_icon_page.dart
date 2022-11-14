@@ -55,7 +55,6 @@ class SelectedImageOrIconPage extends StatelessWidget {
                             buildWhen: (previous, current) =>
                             current.indexListReload == index,
                             builder: (context, state) {
-                              print("reload $index");
                               if(indexCurrent == index){
                                 urlImageOrIcon(state.listIcon[index]);
                               }

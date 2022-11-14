@@ -5,6 +5,7 @@ import 'package:your_money/widget/drop_down_btn.dart';
 import 'package:your_money/screens/transactions/cubit/expenses_transaction_cubit.dart';
 import 'package:your_money/widget/card_item_food.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../uitls/size_config.dart';
 import '../../../uitls/theme_color.dart';
 import '../../../widget/card_item_chart.dart';
@@ -27,7 +28,7 @@ class ExpensesTransactionPage extends StatelessWidget {
             margin: EdgeInsets.all(SizeConfig.screenHeight * 0.02),
             width: double.maxFinite,
             decoration: BoxDecoration(
-                color: ThemeColor.colorWhile,
+                color: ThemeColorDarkLight.color.backgroundItem,
                 borderRadius:
                 BorderRadius.circular(SizeConfig.screenHeight * 0.02)),
             child:
@@ -36,19 +37,19 @@ class ExpensesTransactionPage extends StatelessWidget {
               current.reload == ExpensesTransactionReload.chart,
               builder: (context, state) {
                 print("reload chart ${state.totalPriceIncome}");
-                List<String> listAxisVertical = AppFormat.listValueToVerticalAxis(state.totalPriceIncome)..add("0k");
+                List<String> listAxisVertical = AppLang.listValueStatistics(state.totalPriceIncome)..add("0");
                 return Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
-                          const TextHeader3(text: "Thống kê % tiêu thụ trên thu nhập"),
+                          TextHeader3(text: AppLang.lang(LangCode.statistical)),
                           const SizedBox(
                             height: 10,
                           ),
                           TextHeader1(
-                            text: AppFormat.numberFormatPriceVi(state.totalPriceIncome),
+                            text: AppLang.formatPrice(state.totalPriceIncome),
                             fontSize: SizeConfig.screenHeight * 0.03,
                           )
                         ],
@@ -71,7 +72,6 @@ class ExpensesTransactionPage extends StatelessWidget {
                                               5,
                                                   (index) => TextHeader5(
                                                 text: listAxisVertical[index],
-                                                colorText: ThemeColor.colorGrey,
                                               ))),
                                     ),
                                   ),
@@ -111,7 +111,7 @@ class ExpensesTransactionPage extends StatelessWidget {
                   builder: (context, state) {
                     return DropDownBtn(
                         listItemDrop: [
-                          "All Expenses",
+                          AppLang.lang(LangCode.allExpenses),
                           ...state.listNameItemExpenses
                         ],
                         indexSelected: (int index) {
@@ -127,7 +127,7 @@ class ExpensesTransactionPage extends StatelessWidget {
                     builder: (context, state) {
                       return TextHeader3(
                           text:
-                          "-${AppFormat.numberFormatPriceVi(state.totalPrice)}",
+                          "-${AppLang.formatPrice(state.totalPrice)}",
                           colorText: ThemeColor.colorRed);
                     }),
               ],

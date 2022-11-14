@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:your_money/app/router/route_name.dart';
 import 'package:your_money/models/item_menu.dart';
+import 'package:your_money/screens/backup/backup.dart';
 import 'package:your_money/screens/detail_item_movie/view/detail_item_movie_view.dart';
 import 'package:your_money/screens/home/view/home_view.dart';
 import 'package:your_money/screens/select_item_menu/view/view.dart';
@@ -30,7 +31,7 @@ class AppRouter {
           return PageTransition(
               child: const SplashView(
               ),
-              type: PageTransitionType.rightToLeft);
+              type: PageTransitionType.theme);
         }
         return _errRoute();
       case RouteName.detailItemFood:
@@ -48,7 +49,7 @@ class AppRouter {
               child: DetailItemMovieView(
                 indexDetailMovie: args,
               ),
-              type: PageTransitionType.rightToLeft);
+              type: PageTransitionType.bottomToTop);
         }
         return _errRoute();
       case RouteName.selectItemMenu:
@@ -64,6 +65,14 @@ class AppRouter {
         if (args != null && args is String) {
           return PageTransition(
               child: const TransactionsView(
+              ),
+              type: PageTransitionType.rightToLeft);
+        }
+        return _errRoute();
+      case RouteName.backup:
+        if (args != null && args is String) {
+          return PageTransition(
+              child: const BackupView(
               ),
               type: PageTransitionType.rightToLeft);
         }

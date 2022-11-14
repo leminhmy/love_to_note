@@ -7,6 +7,8 @@ import 'package:your_money/models/item_food.dart';
 import 'package:your_money/repository/repository_menu.dart';
 import 'package:your_money/uitls/icons_assets.dart';
 
+import '../../../app/locate/lang_code.dart';
+
 part 'add_item_food_state.dart';
 
 class AddItemFoodCubit extends Cubit<AddItemFoodState>{
@@ -20,17 +22,17 @@ class AddItemFoodCubit extends Cubit<AddItemFoodState>{
   saveToList(){
 
     if(state.itemFood.name.isEmpty){
-      emit(state.copyWith(messError: "Name is Empty"));
+      emit(state.copyWith(messError: AppLang.lang(LangCode.nameIsEmpty)));
       showDialog(AddItemFoodDialog.error);
       return;
     }
     if(state.itemFood.price < 1 ){
-      emit(state.copyWith(messError: "Price > 1"));
+      emit(state.copyWith(messError: "${AppLang.lang(LangCode.price)} > 1"));
       showDialog(AddItemFoodDialog.error);
       return;
     }
     if(state.itemFood.image.isEmpty && state.itemFood.imageLocal.isEmpty){
-      emit(state.copyWith(messError: "Image is Empty"));
+      emit(state.copyWith(messError: AppLang.lang(LangCode.imageIsEmpty)));
       showDialog(AddItemFoodDialog.error);
       return;
     }

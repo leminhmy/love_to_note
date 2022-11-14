@@ -19,6 +19,8 @@ class IconsAssets{
   static const String balanced  = "assets/icons/balanced-diet.png";
   static const String delivery  = "assets/icons/delivery-man.png";
   static const String diet  = "assets/icons/diet.png";
+  static const String backup  = "assets/icons/backup.png";
+  static const String google  = "assets/icons/google.png";
 
   static List<String> listIcon = [
     burger,shopping,pet,film,moneyBag,control,smartPhone,application,

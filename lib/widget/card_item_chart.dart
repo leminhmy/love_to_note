@@ -26,7 +26,7 @@ class CardItemChart extends StatelessWidget {
               height: double.maxFinite,
               alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
-                color: ThemeColor.colorGreyWhile,
+                color: ThemeColorDarkLight.color.text3,
                 borderRadius: BorderRadius.circular(SizeConfig.screenHeight * 0.015),
               ),
               child:  TweenAnimationBuilder(

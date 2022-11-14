@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../app/locate/lang_code.dart';
 import '../models/item_expenses.dart';
 import '../uitls/app_format.dart';
 import '../uitls/icons_assets.dart';
@@ -80,7 +81,7 @@ class _CardTransactionsState extends State<CardTransactions>
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(horizontal:SizeConfig.screenHeight * 0.02 ),
                   decoration:  BoxDecoration(
-                    color: ThemeColor.colorWhile,
+                    color: ThemeColorDarkLight.color.backgroundItem,
                     borderRadius: widget.disableBtnDelete == false?BorderRadius.only(
                       bottomLeft: Radius.circular(SizeConfig.screenHeight * 0.015),
                       topLeft: Radius.circular(SizeConfig.screenHeight * 0.015),
@@ -105,7 +106,6 @@ class _CardTransactionsState extends State<CardTransactions>
                          TextHeader1(
                           text: widget.itemExpenses.name,
                           fontSize: SizeConfig.screenHeight * 0.02,
-                          colorText: ThemeColor.colorBlack2,
                         ),
                         const Spacer(),
                         Column(
@@ -113,7 +113,7 @@ class _CardTransactionsState extends State<CardTransactions>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                              TextHeader3(
-                              text: AppFormat.numberFormatPriceVi(widget.itemExpenses.price),
+                              text: AppLang.formatPrice(widget.itemExpenses.price),
                             ),
                             widget.subWidget ??
                                 const SizedBox(),

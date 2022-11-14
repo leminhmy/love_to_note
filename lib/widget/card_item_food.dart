@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:your_money/uitls/image_assets.dart';
 
+import '../app/locate/lang_code.dart';
 import '../models/item_food.dart';
 import '../models/item_expenses.dart';
 import '../uitls/app_format.dart';
@@ -20,12 +21,13 @@ class CardItemFood extends StatefulWidget {
     required this.item,
      this.onPressDelete,
     this.subWidget,
-    this.disableBtnDelete = false,
+    this.disableBtnDelete = false, this.onLongPress,
   }) : super(key: key);
   final Widget? subWidget;
   final ItemFood item;
   final VoidCallback? onPressDelete;
   final bool disableBtnDelete;
+  final VoidCallback? onLongPress;
 
   @override
   State<CardItemFood> createState() => _CardItemFoodState();
@@ -58,11 +60,7 @@ class _CardItemFoodState extends State<CardItemFood>
               curve: Curves.easeOut,
             )));
 
-    _animationController.addListener(() {
-      if(_animationController.isCompleted){
-        widget.onPressDelete!();
-      }
-    });
+
     super.initState();
   }
 
@@ -92,10 +90,10 @@ class _CardItemFoodState extends State<CardItemFood>
                   Container(
                     width: SizeConfig.screenWidth * 0.92,
                     height: double.maxFinite,
-                    padding: EdgeInsets.all(SizeConfig.screenHeight * 0.015),
+
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: ThemeColor.colorWhile,
+                      color: ThemeColorDarkLight.color.backgroundItem,
                       borderRadius: widget.disableBtnDelete == false?BorderRadius.only(
                         bottomLeft:
                             Radius.circular(SizeConfig.screenHeight * 0.015),
@@ -103,54 +101,65 @@ class _CardItemFoodState extends State<CardItemFood>
                             Radius.circular(SizeConfig.screenHeight * 0.015),
                       ):BorderRadius.circular(SizeConfig.screenHeight * 0.015),
                     ),
-                    child: SingleChildScrollView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          IconCircleBtn(
-                              color: widget.item.colorBg,
-                              icon: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: widget.item.imageLocal.isNotEmpty
-                                    ? CircleAvatar(
-                                        minRadius:
-                                            SizeConfig.screenHeight * 0.06,
-                                        backgroundImage: FileImage(
-                                            File(widget.item.imageLocal)))
-                                    : ImageIcon(
-                                        AssetImage(widget.item.image),
-                                        color: widget.item.colorIcon,
-                                        size: SizeConfig.screenHeight * 0.05,
-                                      ),
-                              )),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          TextHeader1(
-                            text: widget.item.name,
-                            fontSize: SizeConfig.screenHeight * 0.02,
-                            colorText: ThemeColor.colorBlack2,
-                          ),
-                          const Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextHeader3(
-                                text: AppFormat.numberFormatPriceVi(
-                                    widget.item.price),
-                              ),
-                              widget.subWidget ?? const SizedBox(),
-                            ],
-                          )
-                        ],
+                    child: ElevatedButton(
+                      onPressed: (){},
+                      onLongPress: widget.onLongPress,
+                      style: ElevatedButton.styleFrom(
+                        onPrimary: ThemeColor.colorBlueLight,
+                        primary: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        padding: EdgeInsets.all(SizeConfig.screenHeight * 0.015),
+                      ),
+                      child: SingleChildScrollView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            IconCircleBtn(
+                                color: widget.item.colorBg,
+                                icon: Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: widget.item.imageLocal.isNotEmpty
+                                      ? CircleAvatar(
+                                          minRadius:
+                                              SizeConfig.screenHeight * 0.06,
+                                          backgroundImage: FileImage(
+                                              File(widget.item.imageLocal)))
+                                      : ImageIcon(
+                                          AssetImage(widget.item.image),
+                                          color: widget.item.colorIcon,
+                                          size: SizeConfig.screenHeight * 0.05,
+                                        ),
+                                )),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            TextHeader1(
+                              text: widget.item.name,
+                              fontSize: SizeConfig.screenHeight * 0.02,
+                            ),
+                            const Spacer(),
+                            Column(
+
+                              children: [
+                                TextHeader3(
+                                  text: AppLang.formatPrice(
+                                      widget.item.price),
+                                ),
+                                widget.subWidget ?? const SizedBox(),
+
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   widget.disableBtnDelete == false?GestureDetector(
                     onTap: () {
                       animationDelete();
+                      widget.onPressDelete!();
+
 
                     },
                     child: SizedBox(

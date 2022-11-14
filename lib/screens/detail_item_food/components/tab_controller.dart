@@ -35,7 +35,7 @@ class _TabControllerWidgetState extends State<TabControllerWidget>
             TabBar(
                 padding: const EdgeInsets.all(20),
                 controller: _tabController,
-                labelColor: ThemeColor.colorBlack,
+                labelColor: ThemeColorDarkLight.color.text,
                 indicatorColor: ThemeColor.colorOrangeBasic,
                 unselectedLabelColor: ThemeColor.colorGrey,
                 onTap: (index){

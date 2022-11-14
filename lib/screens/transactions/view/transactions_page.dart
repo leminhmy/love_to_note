@@ -6,6 +6,7 @@ import 'package:your_money/uitls/theme_color.dart';
 import 'package:your_money/widget/icon_border_btn.dart';
 import 'package:your_money/widget/text_header1.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../app/router/route_name.dart';
 import '../../../uitls/size_config.dart';
 
@@ -35,7 +36,7 @@ class _TransactionsPageState extends State<TransactionsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeColor.colorBackgroundWhile,
+      backgroundColor: ThemeColorDarkLight.color.backgroundScaffold,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +49,7 @@ class _TransactionsPageState extends State<TransactionsPage>
                     onPress: () => Navigator.pushNamed(context, RouteName.initial,arguments: ""),
                     icon: Icon(
                       Icons.arrow_circle_left,
-                      color: ThemeColor.colorGrey,
+                      color: ThemeColorDarkLight.color.icon,
                       size: SizeConfig.screenHeight * 0.03,
                     ),
                   ),
@@ -56,14 +57,14 @@ class _TransactionsPageState extends State<TransactionsPage>
                     width: SizeConfig.screenHeight * 0.02,
                   ),
                   TextHeader1(
-                    text: "Transactions",
+                    text: AppLang.lang(LangCode.transactions),
                     fontSize: SizeConfig.screenHeight * 0.03,
                   ),
                   const Spacer(),
-                  const IconBorderBtn(
+                   IconBorderBtn(
                       icon: ImageIcon(
-                    AssetImage(IconsAssets.control),
-                    color: ThemeColor.colorGrey,
+                        const AssetImage(IconsAssets.control),
+                    color: ThemeColorDarkLight.color.icon,
                   ))
                 ],
               ),

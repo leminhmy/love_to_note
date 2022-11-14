@@ -5,6 +5,7 @@ import 'package:your_money/logic/cubits/app_setting/app_setting_cubit.dart';
 import 'package:your_money/repository/repository_menu.dart';
 import 'package:your_money/screens/detail_item_movie/cubit/detail_item_movie_cubit.dart';
 import 'package:your_money/screens/drawer_home/drawer_home.dart';
+import 'package:your_money/screens/home/home.dart';
 import 'package:your_money/screens/selected_image_or_icon/selected_image_or_icon.dart';
 import 'package:your_money/screens/splash/view/splash_page.dart';
 import 'package:your_money/screens/splash/view/splash_view.dart';
@@ -12,6 +13,7 @@ import 'package:your_money/screens/transactions/cubit/income_transaction__cubit.
 
 import '../app/router/app_router.dart';
 import '../logic/cubits/internet/internet_cubit.dart';
+import 'backup/cubit/backup_cubit.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -29,6 +31,9 @@ class App extends StatelessWidget {
         BlocProvider(
           create: (context) => DetailItemMovieCubit(),
         ),
+        BlocProvider(
+          create: (context) => HomeCubit(),
+        ),
         BlocProvider<DrawerHomeCubit>(
           create: (context) => DrawerHomeCubit()..loadingDrawerHome(),
         ),
@@ -36,6 +41,7 @@ class App extends StatelessWidget {
           create: (context) => SelectedImageOrIconCubit()..loadingSelectedImageIcon(),
         ),
         BlocProvider(create: (BuildContext context) => IncomeTransactionCubit()..loadingIncomeTransaction()),
+        BlocProvider<BackupCubit>(create: (BuildContext context) => BackupCubit()..loading()),
 
       ],
       child: const MyApp(),
@@ -76,7 +82,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         break;
       case AppLifecycleState.paused:
       //Execute the code the when user leave the app
-        StorageSecure.saveAllData(RepositoryMenu().getDataToStorage());
+        StorageSecure.saveAllData();
         break;
       default:
         break;

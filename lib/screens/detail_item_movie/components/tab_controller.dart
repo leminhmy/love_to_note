@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:your_money/app/locate/lang_code.dart';
 import 'package:your_money/screens/detail_item_movie/cubit/detail_item_movie_cubit.dart';
 import 'package:your_money/widget/container_border_liner.dart';
 
@@ -85,7 +86,7 @@ class _TabControllerWidgetState extends State<TabControllerWidget>
                           }
                       ),
                       TextHeader3(
-                        text: index==6?"Chủ Nhật":"Thứ ${index+2}",
+                        text: AppLang.weekDays()[index],
                         colorText: ThemeColor.colorWhile,
                       ),
 

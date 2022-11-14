@@ -19,7 +19,7 @@ class NoteMovie {
     return NoteMovie(
       name: json['name']??"",
       image: json['image']??"",
-      listDay: List<Map<String, dynamic>>.from(json["listDay"]).map((e) => Weekdays.fromJson(e)).toList(),
+      listDay: List<Map<String, dynamic>>.from(json["listDay"]??[]).map((e) => Weekdays.fromJson(e)).toList(),
     );
   }
 }
@@ -43,7 +43,7 @@ class Weekdays {
   Map<String, dynamic> toJson() {
     return {
       "name": name,
-      "itemMovie": listItemDay.map((e) => e.toJson()).toList(),
+      "listItemDay": listItemDay.map((e) => e.toJson()).toList(),
     };
   }
 }

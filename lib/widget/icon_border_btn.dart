@@ -27,7 +27,7 @@ class IconBorderBtn extends StatelessWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: colorBg ?? Colors.white,
+        color: colorBg ?? ThemeColorDarkLight.color.button,
         borderRadius: BorderRadius.circular(borderRadius ?? 12),
       ),
       child: ElevatedButton(

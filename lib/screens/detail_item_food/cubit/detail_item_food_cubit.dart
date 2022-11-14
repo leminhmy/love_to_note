@@ -21,6 +21,16 @@ class DetailItemFoodCubit extends Cubit<DetailItemFoodState>{
     emit(DetailItemFoodState(listItemFood: listItemFood,indexListExpenses: indexItem,listItemExpenses: listItemExpense));
   }
 
+  search(String query){
+    List<ItemFood> listSearch = listItemFood.where((itemFood) {
+      final nameLower = itemFood.name.toLowerCase();
+      final searchLower = query.toLowerCase();
+      return nameLower.contains(searchLower);
+    }).toList();
+    emit(state.copyWith(listItemFood: listSearch));
+    reloadWidget(widgetReload: DetailItemFoodReload.listItem);
+  }
+
   tabChange(int index){
     emit(state.copyWith(indexListExpenses: index));
     sortItem(indexSort);

@@ -15,8 +15,8 @@ class ItemMovie{
 
   factory ItemMovie.fromJson(Map<String, dynamic> json){
     return ItemMovie(
-      name: json['name'],
-      image: json['image'],
+      name: json['name']??"",
+      image: json['image']??"",
     );
   }
 

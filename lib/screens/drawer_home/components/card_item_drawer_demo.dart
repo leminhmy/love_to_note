@@ -24,7 +24,7 @@ class CardItemDrawerDemo extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: ThemeColor.colorWhile,
+        color: ThemeColorDarkLight.color.backgroundItem,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(

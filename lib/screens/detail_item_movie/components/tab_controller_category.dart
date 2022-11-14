@@ -4,6 +4,7 @@ import 'package:your_money/screens/detail_item_movie/cubit/detail_item_movie_cub
 
 import '../../../uitls/theme_color.dart';
 import '../../../widget/text_header3.dart';
+import '../../home/cubit/home_cubit.dart';
 
 class TabControllerCateGory extends StatefulWidget {
   const TabControllerCateGory({Key? key}) : super(key: key);
@@ -25,6 +26,10 @@ class _TabControllerCategoryState extends State<TabControllerCateGory>
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<HomeCubit, HomeState>(
+      buildWhen: (previous, current) =>
+      current.reload == HomeReload.themeColor,
+      builder: (context, state) {
     return BlocBuilder<DetailItemMovieCubit, DetailItemMovieState>(
       buildWhen: (previous, current) =>false,
       builder: (context, state) {
@@ -34,7 +39,7 @@ class _TabControllerCategoryState extends State<TabControllerCateGory>
             TabBar(
               padding: const EdgeInsets.all(20),
               controller: _tabController,
-              labelColor: ThemeColor.colorWhile,
+              labelColor: ThemeColorDarkLight.color.text,
               indicatorColor: ThemeColor.colorOrangeBasic,
               unselectedLabelColor: ThemeColor.colorGreyWhile,
               labelStyle: const TextStyle(
@@ -57,5 +62,7 @@ class _TabControllerCategoryState extends State<TabControllerCateGory>
         );
       },
     );
+  },
+);
   }
 }

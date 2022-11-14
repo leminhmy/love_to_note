@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:your_money/app/locate/lang_code.dart';
 import 'package:your_money/uitls/theme_color.dart';
 
 import '../../../models/item_food.dart';
@@ -62,17 +63,17 @@ class IncomeTransactionCubit extends Cubit<IncomeTransactionState> {
   //AddItemInCome
   saveToList() {
     if (state.itemFood.name.isEmpty) {
-      emit(state.copyWith(messError: "Name is Empty"));
+      emit(state.copyWith(messError: AppLang.lang(LangCode.nameIsEmpty)));
       showDialog(AddIncomeTransactionDialog.error);
       return;
     }
     if (state.itemFood.price < 1) {
-      emit(state.copyWith(messError: "Price > 1"));
+      emit(state.copyWith(messError: "${AppLang.lang(LangCode.price)} > 1"));
       showDialog(AddIncomeTransactionDialog.error);
       return;
     }
     if (state.itemFood.image.isEmpty && state.itemFood.imageLocal.isEmpty) {
-      emit(state.copyWith(messError: "Image is Empty"));
+      emit(state.copyWith(messError: AppLang.lang(LangCode.imageIsEmpty)));
       showDialog(AddIncomeTransactionDialog.error);
       return;
     }

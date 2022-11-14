@@ -111,7 +111,7 @@ class _SelectItemMenuPageState extends State<SelectItemMenuPage>
         });
 
         return Scaffold(
-            backgroundColor: ThemeColor.colorOrangeBasic,
+            backgroundColor: ThemeColorDarkLight.color.backgroundItem,
             body: SafeArea(
               child: Stack(
                 alignment: Alignment.topCenter,
@@ -126,9 +126,9 @@ class _SelectItemMenuPageState extends State<SelectItemMenuPage>
                           onPress: () {
                             Navigator.pop(context);
                           },
-                          icon: const Icon(
+                          icon:  Icon(
                             Icons.arrow_back_ios_new_outlined,
-                            color: ThemeColor.colorGrey,
+                            color: ThemeColorDarkLight.color.icon,
                           ),
                         ),
                         const TextHeader1(

@@ -11,5 +11,9 @@ class ImageAssets{
   static const String itemWidgetFood = "assets/images/item_widget2.png";
   static const String imageSplash = "assets/images/background_3.png";
   static const String picture = "assets/images/picture.png";
-
+  static const String darkBg = "assets/images/background_dark.jpg";
+  static const String quocKiVietNam = "assets/images/vietnam_round_icon_640.png";
+  static const String flagUk = "assets/images/united_kingdom_round_icon_640.png";
+  static const String themeDark = "assets/images/dark.jpg";
+  static const String themeLight = "assets/images/light.jpg";
 }

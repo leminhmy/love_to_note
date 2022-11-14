@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_money/screens/add_item_food/view/add_item_food_page.dart';
 
+import '../../../app/locate/lang_code.dart';
 import '../../../widget/show_snack.dart';
 import '../cubit/add_item_food_cubit.dart';
 
@@ -22,7 +23,7 @@ class AddItemFoodView extends StatelessWidget {
              ShowSnackCustom.showFlushBar(context: context,isError: true,text: state.messError);
            }
            if(state.showDialog == AddItemFoodDialog.success){
-             ShowSnackCustom.showFlushBar(context: context,isError: false,text: "Add Success");
+             ShowSnackCustom.showFlushBar(context: context,isError: false,text: AppLang.lang(LangCode.addSuccess));
            }
           },
           child: AddItemFoodPage(nameCategory: nameCategory)),
